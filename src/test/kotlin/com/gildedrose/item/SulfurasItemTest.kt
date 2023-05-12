@@ -1,5 +1,7 @@
 package com.gildedrose.item
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -9,17 +11,17 @@ class SulfurasItemTest {
         val item = Item(ImprovedItem.SULFURAS_NAME, 10, ImprovedItem.SULFURAS_ITEM_QUALITY)
         val baseItem = item.toGildedRoseItem()
 
-        assert(baseItem is ImprovedItem.Sulfuras)
+        assertTrue(baseItem is ImprovedItem.Sulfuras)
 
         // Day 1
         baseItem.updateQuality()
-        assert(baseItem.quality == item.quality)
-        assert(baseItem.sellIn == item.sellIn)
+        assertEquals(baseItem.quality, item.quality)
+        assertEquals(baseItem.sellIn, item.sellIn)
 
         // Day 2
         baseItem.updateQuality()
-        assert(baseItem.quality == item.quality)
-        assert(baseItem.sellIn == item.sellIn)
+        assertEquals(baseItem.quality, item.quality)
+        assertEquals(baseItem.sellIn, item.sellIn)
     }
 
     @Test

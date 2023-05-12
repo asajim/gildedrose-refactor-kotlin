@@ -1,5 +1,7 @@
 package com.gildedrose.item
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -9,17 +11,17 @@ class BaseItemTest {
         val item = Item("Test item", 10, 10)
         val baseItem = item.toGildedRoseItem()
 
-        assert(baseItem is ImprovedItem.Basic)
+        assertTrue(baseItem is ImprovedItem.Basic)
 
         // Day 1
         baseItem.updateQuality()
-        assert(baseItem.quality == item.quality - 1)
-        assert(baseItem.sellIn == item.sellIn - 1)
+        assertEquals(baseItem.quality, item.quality - 1)
+        assertEquals(baseItem.sellIn, item.sellIn - 1)
 
         // Day 2
         baseItem.updateQuality()
-        assert(baseItem.quality == item.quality - 2)
-        assert(baseItem.sellIn == item.sellIn - 2)
+        assertEquals(baseItem.quality, item.quality - 2)
+        assertEquals(baseItem.sellIn, item.sellIn - 2)
     }
 
     @Test
@@ -27,17 +29,17 @@ class BaseItemTest {
         val item = Item("Test item", 0, 10)
         val basicItem = item.toGildedRoseItem()
 
-        assert(basicItem is ImprovedItem.Basic)
+        assertTrue(basicItem is ImprovedItem.Basic)
 
         // Day 1
         basicItem.updateQuality()
-        assert(basicItem.quality == item.quality - 2)
-        assert(basicItem.sellIn == item.sellIn - 1)
+        assertEquals(basicItem.quality, item.quality - 2)
+        assertEquals(basicItem.sellIn, item.sellIn - 1)
 
         // Day 2
         basicItem.updateQuality()
-        assert(basicItem.quality == item.quality - 4)
-        assert(basicItem.sellIn == item.sellIn - 2)
+        assertEquals(basicItem.quality, item.quality - 4)
+        assertEquals(basicItem.sellIn, item.sellIn - 2)
     }
 
     @Test
@@ -45,12 +47,12 @@ class BaseItemTest {
         val item = Item("Test item", 0, 0)
         val basicItem = item.toGildedRoseItem()
 
-        assert(basicItem is ImprovedItem.Basic)
+        assertTrue(basicItem is ImprovedItem.Basic)
 
         // Day 1
         basicItem.updateQuality()
-        assert(basicItem.quality == 0)
-        assert(basicItem.sellIn == item.sellIn - 1)
+        assertEquals(basicItem.quality, 0)
+        assertEquals(basicItem.sellIn, item.sellIn - 1)
     }
 
     @Test

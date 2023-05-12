@@ -1,5 +1,7 @@
 package com.gildedrose.item
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class AgedBrieItemTest {
@@ -8,17 +10,17 @@ class AgedBrieItemTest {
         val item = Item(ImprovedItem.AGED_BRIE_NAME, 10, 10)
         val agedBrieItem = item.toGildedRoseItem()
 
-        assert(agedBrieItem is ImprovedItem.AgedBrieItem)
+        assertTrue(agedBrieItem is ImprovedItem.AgedBrieItem)
 
         // Day 1
         agedBrieItem.updateQuality()
-        assert(agedBrieItem.quality == item.quality + 1)
-        assert(agedBrieItem.sellIn == item.sellIn - 1)
+        assertEquals(agedBrieItem.quality, item.quality + 1)
+        assertEquals(agedBrieItem.sellIn, item.sellIn - 1)
 
         // Day 2
         agedBrieItem.updateQuality()
-        assert(agedBrieItem.quality == item.quality + 2)
-        assert(agedBrieItem.sellIn == item.sellIn - 2)
+        assertEquals(agedBrieItem.quality, item.quality + 2)
+        assertEquals(agedBrieItem.sellIn, item.sellIn - 2)
     }
 
     @Test
@@ -26,17 +28,17 @@ class AgedBrieItemTest {
         val item = Item(ImprovedItem.AGED_BRIE_NAME, 0, 10)
         val agedBrieItem = item.toGildedRoseItem()
 
-        assert(agedBrieItem is ImprovedItem.AgedBrieItem)
+        assertTrue(agedBrieItem is ImprovedItem.AgedBrieItem)
 
         // Day 1
         agedBrieItem.updateQuality()
-        assert(agedBrieItem.quality == item.quality + 2)
-        assert(agedBrieItem.sellIn == item.sellIn - 1)
+        assertEquals(agedBrieItem.quality, item.quality + 2)
+        assertEquals(agedBrieItem.sellIn, item.sellIn - 1)
 
         // Day 2
         agedBrieItem.updateQuality()
-        assert(agedBrieItem.quality == item.quality + 4)
-        assert(agedBrieItem.sellIn == item.sellIn - 2)
+        assertEquals(agedBrieItem.quality, item.quality + 4)
+        assertEquals(agedBrieItem.sellIn, item.sellIn - 2)
     }
 
     @Test
@@ -44,16 +46,16 @@ class AgedBrieItemTest {
         val item = Item(ImprovedItem.AGED_BRIE_NAME, 10, 49)
         val agedBrieItem = item.toGildedRoseItem()
 
-        assert(agedBrieItem is ImprovedItem.AgedBrieItem)
+        assertTrue(agedBrieItem is ImprovedItem.AgedBrieItem)
 
         // Day 1
         agedBrieItem.updateQuality()
-        assert(agedBrieItem.quality == ImprovedItem.MAX_ITEM_QUALITY)
-        assert(agedBrieItem.sellIn == item.sellIn - 1)
+        assertEquals(agedBrieItem.quality, ImprovedItem.MAX_ITEM_QUALITY)
+        assertEquals(agedBrieItem.sellIn, item.sellIn - 1)
 
         // Day 2
         agedBrieItem.updateQuality()
-        assert(agedBrieItem.quality == ImprovedItem.MAX_ITEM_QUALITY)
-        assert(agedBrieItem.sellIn == item.sellIn - 2)
+        assertEquals(agedBrieItem.quality, ImprovedItem.MAX_ITEM_QUALITY)
+        assertEquals(agedBrieItem.sellIn, item.sellIn - 2)
     }
 }

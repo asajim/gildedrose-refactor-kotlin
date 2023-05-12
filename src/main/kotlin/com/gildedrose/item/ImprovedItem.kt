@@ -30,7 +30,7 @@ sealed class ImprovedItem(
     init {
         assert(quality >= MIN_ITEM_QUALITY) { "Quality cannot be negative" }
         if (!name.startsWith(SULFURAS_NAME)) {
-            assert(quality <= MAX_ITEM_QUALITY) { "Quality cannot be more than $MAX_ITEM_QUALITY except $SULFURAS_ITEM_QUALITY" }
+            assert(quality <= MAX_ITEM_QUALITY) { "Quality cannot be more than $MAX_ITEM_QUALITY" }
         }
     }
 

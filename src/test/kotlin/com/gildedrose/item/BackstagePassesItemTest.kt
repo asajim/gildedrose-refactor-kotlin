@@ -1,5 +1,7 @@
 package com.gildedrose.item
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class BackstagePassesItemTest {
@@ -8,17 +10,17 @@ class BackstagePassesItemTest {
         val item = Item(ImprovedItem.BACKSTAGE_PASSES_NAME, 100, 10)
         val baseItem = item.toGildedRoseItem()
 
-        assert(baseItem is ImprovedItem.BackstagePassesItem)
+        assertTrue(baseItem is ImprovedItem.BackstagePassesItem)
 
         // Day 1
         baseItem.updateQuality()
-        assert(baseItem.quality == item.quality + 1)
-        assert(baseItem.sellIn == item.sellIn - 1)
+        assertEquals(baseItem.quality, item.quality + 1)
+        assertEquals(baseItem.sellIn, item.sellIn - 1)
 
         // Day 2
         baseItem.updateQuality()
-        assert(baseItem.quality == item.quality + 2)
-        assert(baseItem.sellIn == item.sellIn - 2)
+        assertEquals(baseItem.quality, item.quality + 2)
+        assertEquals(baseItem.sellIn, item.sellIn - 2)
     }
 
     @Test
@@ -26,17 +28,17 @@ class BackstagePassesItemTest {
         val item = Item(ImprovedItem.BACKSTAGE_PASSES_NAME, 10, 10)
         val baseItem = item.toGildedRoseItem()
 
-        assert(baseItem is ImprovedItem.BackstagePassesItem)
+        assertTrue(baseItem is ImprovedItem.BackstagePassesItem)
 
         // Day 1
         baseItem.updateQuality()
-        assert(baseItem.quality == item.quality + 2)
-        assert(baseItem.sellIn == item.sellIn - 1)
+        assertEquals(baseItem.quality, item.quality + 2)
+        assertEquals(baseItem.sellIn, item.sellIn - 1)
 
         // Day 2
         baseItem.updateQuality()
-        assert(baseItem.quality == item.quality + 4)
-        assert(baseItem.sellIn == item.sellIn - 2)
+        assertEquals(baseItem.quality, item.quality + 4)
+        assertEquals(baseItem.sellIn, item.sellIn - 2)
     }
 
     @Test
@@ -44,17 +46,17 @@ class BackstagePassesItemTest {
         val item = Item(ImprovedItem.BACKSTAGE_PASSES_NAME, 5, 10)
         val baseItem = item.toGildedRoseItem()
 
-        assert(baseItem is ImprovedItem.BackstagePassesItem)
+        assertTrue(baseItem is ImprovedItem.BackstagePassesItem)
 
         // Day 1
         baseItem.updateQuality()
-        assert(baseItem.quality == item.quality + 3)
-        assert(baseItem.sellIn == item.sellIn - 1)
+        assertEquals(baseItem.quality, item.quality + 3)
+        assertEquals(baseItem.sellIn, item.sellIn - 1)
 
         // Day 2
         baseItem.updateQuality()
-        assert(baseItem.quality == item.quality + 6)
-        assert(baseItem.sellIn == item.sellIn - 2)
+        assertEquals(baseItem.quality, item.quality + 6)
+        assertEquals(baseItem.sellIn, item.sellIn - 2)
     }
 
     @Test
@@ -62,12 +64,12 @@ class BackstagePassesItemTest {
         val item = Item(ImprovedItem.BACKSTAGE_PASSES_NAME, 0, 10)
         val baseItem = item.toGildedRoseItem()
 
-        assert(baseItem is ImprovedItem.BackstagePassesItem)
+        assertTrue(baseItem is ImprovedItem.BackstagePassesItem)
 
         // Day 1
         baseItem.updateQuality()
-        assert(baseItem.quality == 0)
-        assert(baseItem.sellIn == item.sellIn - 1)
+        assertEquals(baseItem.quality, 0)
+        assertEquals(baseItem.sellIn, item.sellIn - 1)
     }
 
     @Test
@@ -75,12 +77,12 @@ class BackstagePassesItemTest {
         val item = Item(ImprovedItem.BACKSTAGE_PASSES_NAME, 0, 0)
         val basicItem = item.toGildedRoseItem()
 
-        assert(basicItem is ImprovedItem.BackstagePassesItem)
+        assertTrue(basicItem is ImprovedItem.BackstagePassesItem)
 
         // Day 1
         basicItem.updateQuality()
-        assert(basicItem.quality == 0)
-        assert(basicItem.sellIn == item.sellIn - 1)
+        assertEquals(basicItem.quality, 0)
+        assertEquals(basicItem.sellIn, item.sellIn - 1)
     }
 
     @Test
@@ -88,11 +90,11 @@ class BackstagePassesItemTest {
         val item = Item(ImprovedItem.BACKSTAGE_PASSES_NAME, 1, 49)
         val basicItem = item.toGildedRoseItem()
 
-        assert(basicItem is ImprovedItem.BackstagePassesItem)
+        assertTrue(basicItem is ImprovedItem.BackstagePassesItem)
 
         // Day 1
         basicItem.updateQuality()
-        assert(basicItem.quality == ImprovedItem.MAX_ITEM_QUALITY)
-        assert(basicItem.sellIn == item.sellIn - 1)
+        assertEquals(basicItem.quality, ImprovedItem.MAX_ITEM_QUALITY)
+        assertEquals(basicItem.sellIn, item.sellIn - 1)
     }
 }
