@@ -56,7 +56,7 @@ sealed class ImprovedItem(
             // Once the sell by date has passed, Quality degrades twice as fast
             val newQuality = if (sellIn >= 0) quality - 1 else quality - 2
             // The quality of an item is never negative
-            quality = max(0, newQuality)
+            quality = max(MIN_ITEM_QUALITY, newQuality)
         }
     }
 
@@ -97,10 +97,21 @@ sealed class ImprovedItem(
         }
     }
 
+    class Conjure(item: Item) : ImprovedItem(item) {
+        override fun updateQuality() {
+            sellIn -= 1
+            //  items degrade in Quality twice as fast as normal items
+            val newQuality = if (sellIn >= 0) quality - 2 else quality - 4
+            // The quality of an item is never negative
+            quality = max(MIN_ITEM_QUALITY, newQuality)
+        }
+    }
+
     companion object {
         const val AGED_BRIE_NAME = "Aged Brie"
         const val SULFURAS_NAME = "Sulfuras"
         const val BACKSTAGE_PASSES_NAME = "Backstage passes"
+        const val CONJURED_NAME = "Conjured"
         const val MIN_ITEM_QUALITY = 0
         const val MAX_ITEM_QUALITY = 50
         const val SULFURAS_ITEM_QUALITY = 80
@@ -112,6 +123,7 @@ fun Item.toGildedRoseItem(): ImprovedItem {
         name.startsWith(ImprovedItem.AGED_BRIE_NAME) -> ImprovedItem.AgedBrieItem(this)
         name.startsWith(ImprovedItem.SULFURAS_NAME) -> ImprovedItem.Sulfuras(this)
         name.startsWith(ImprovedItem.BACKSTAGE_PASSES_NAME) -> ImprovedItem.BackstagePassesItem(this)
+        name.startsWith(ImprovedItem.CONJURED_NAME) -> ImprovedItem.Conjure(this)
         else -> ImprovedItem.Basic(this)
     }
 }

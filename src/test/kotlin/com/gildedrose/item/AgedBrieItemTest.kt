@@ -24,7 +24,7 @@ class AgedBrieItemTest {
     }
 
     @Test
-    fun `quality increase twice faster after quality is updated when sellIn less than zero`() {
+    fun `quality increase twice faster after quality is updated and sellIn less than zero`() {
         val item = Item(ImprovedItem.AGED_BRIE_NAME, 0, 10)
         val agedBrieItem = item.toGildedRoseItem()
 

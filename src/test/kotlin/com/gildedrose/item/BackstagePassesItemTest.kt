@@ -68,12 +68,12 @@ class BackstagePassesItemTest {
 
         // Day 1
         baseItem.updateQuality()
-        assertEquals(baseItem.quality, 0)
+        assertEquals(baseItem.quality, ImprovedItem.MIN_ITEM_QUALITY)
         assertEquals(baseItem.sellIn, item.sellIn - 1)
     }
 
     @Test
-    fun `quality can never be less than zero after quality is updated when sellIn less than 0`() {
+    fun `quality can never be less than zero after quality is updated and sellIn less than 0`() {
         val item = Item(ImprovedItem.BACKSTAGE_PASSES_NAME, 0, 0)
         val basicItem = item.toGildedRoseItem()
 
@@ -81,7 +81,7 @@ class BackstagePassesItemTest {
 
         // Day 1
         basicItem.updateQuality()
-        assertEquals(basicItem.quality, 0)
+        assertEquals(basicItem.quality, ImprovedItem.MIN_ITEM_QUALITY)
         assertEquals(basicItem.sellIn, item.sellIn - 1)
     }
 
