@@ -51,13 +51,13 @@ class BaseItemTest {
 
         // Day 1
         basicItem.updateQuality()
-        assertEquals(basicItem.quality, 0)
+        assertEquals(basicItem.quality, ImprovedItem.MIN_ITEM_QUALITY)
         assertEquals(basicItem.sellIn, item.sellIn - 1)
     }
 
     @Test
     fun `initialized quality can never be more than 50`() {
-        val item = Item(ImprovedItem.SULFURAS_NAME, 10, 220)
+        val item = Item("Test item", 10, 220)
         assertThrows<AssertionError> {
             item.toGildedRoseItem()
         }
@@ -65,7 +65,7 @@ class BaseItemTest {
 
     @Test
     fun `initialized quality can never be less than 0`() {
-        val item = Item(ImprovedItem.SULFURAS_NAME, 10, -1)
+        val item = Item("Test item", 10, -1)
         assertThrows<AssertionError> {
             item.toGildedRoseItem()
         }
